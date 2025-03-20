@@ -246,4 +246,58 @@ Each container serves a specific purpose in the ReportPortal ecosystem. You can 
 
 ```
 docker ps | grep reportportal
-``` 
+```
+
+## Test Cases Overview
+
+This automation project includes test cases for [DemoBlaze.com](https://www.demoblaze.com/), a demo e-commerce website for electronics:
+
+### DemoBlaze.com Tests
+
+The test suite automates the following scenarios:
+- Homepage validation
+- Navigation menu verification
+- Product categories display
+- Product selection and details view
+- Shopping cart functionality
+- User login and registration
+
+These tests demonstrate end-to-end testing capabilities with Playwright while integrating with ReportPortal for comprehensive test reporting.
+
+Example test file structure:
+```javascript
+// tests/example.spec.js
+test.describe('DemoBlaze website tests', () => {
+  test('Homepage loads successfully', async ({ page }) => {
+    // Navigate to the website
+    await page.goto('/');
+    
+    // Verify the page loaded successfully
+    await expect(page).toHaveTitle(/STORE/);
+    
+    // Take a screenshot for the report
+    await page.screenshot({ path: 'homepage.png' });
+  });
+  
+  test('Has correct navigation menu', async ({ page }) => {
+    await page.goto('/');
+    
+    // Check the navigation menu
+    const navMenu = page.locator('#navbarExample');
+    await expect(navMenu).toBeVisible();
+    
+    // Check Home link exists
+    const homeLink = page.locator('a:has-text("Home")');
+    await expect(homeLink).toBeVisible();
+  });
+  
+  // Additional test cases...
+});
+```
+
+These tests are designed to showcase Playwright's capabilities for:
+- Page navigation and interaction
+- Element locator strategies
+- Assertion patterns
+- Screenshot captures for visual verification
+- Integration with ReportPortal for detailed test reporting 
