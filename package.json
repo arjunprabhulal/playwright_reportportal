@@ -1,0 +1,29 @@
+{
+  "name": "playwright-reportportal-automation",
+  "version": "1.0.0",
+  "description": "Playwright test automation with Report Portal integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:reportportal": "cross-env RP_API_KEY=\"bearer YOUR_API_KEY_HERE\" RP_PROJECT=\"YOUR_PROJECT_NAME\" RP_ENDPOINT=\"http://localhost:8080/api/v1\" RP_LAUNCH=\"Playwright Tests with Bearer Token\" playwright test",
+    "test:reportportal:uuid": "cross-env RP_API_KEY=\"uuid_YOUR_UUID_HERE\" RP_PROJECT=\"YOUR_PROJECT_NAME\" RP_ENDPOINT=\"http://localhost:8080/api/v1\" RP_LAUNCH=\"Playwright Tests UUID\" playwright test",
+    "test:reportportal:bearer": "cross-env RP_API_KEY=\"bearer uuid_YOUR_UUID_HERE\" RP_PROJECT=\"YOUR_PROJECT_NAME\" RP_ENDPOINT=\"http://localhost:8080/api/v1\" RP_LAUNCH=\"Playwright Tests Bearer\" playwright test",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "validate:token": "node ./scripts/validate-token.js"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "reportportal"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@reportportal/agent-js-playwright": "^5.1.11",
+    "@types/node": "^20.8.0",
+    "cross-env": "^7.0.3"
+  }
+}
