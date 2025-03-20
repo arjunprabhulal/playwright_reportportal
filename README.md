@@ -222,3 +222,28 @@ If Report Portal is consuming too much system resources:
    ```
    cd reportportal && docker-compose up -d
    ``` 
+
+## Docker Container Information
+
+When ReportPortal is running properly, you should see the following containers:
+
+```
+CONTAINER ID   IMAGE                                    COMMAND                  CREATED        STATUS               PORTS                                               NAMES
+36a9e9c6dabe   reportportal/service-auto-analyzer:5.13.2   "/venv/bin/uwsgi --h…"   43 hours ago   Up 10 hours (healthy)                                                reportportal-analyzer-1
+5439689c55ff   reportportal/service-auto-analyzer:5.13.2   "/venv/bin/uwsgi --h…"   43 hours ago   Up 10 hours (healthy)                                                reportportal-analyzer-train-1
+5ea01c11ac8c   reportportal/service-index:5.13.0         "./app"                  43 hours ago   Up 10 hours (healthy)   8080/tcp                                       reportportal-index-1
+f663f74f5ef    reportportal/service-jobs:5.13.1         "/bin/sh -c 'exec ja…"   43 hours ago   Up 10 hours (healthy)   8686/tcp                                       reportportal-jobs-1
+15c67dfcb8f    reportportal/service-api:5.13.4         "sh -c 'java ${JAVA_…"   43 hours ago   Up 10 hours (healthy)   8080/tcp                                       reportportal-api-1
+e2c4112a5c3f   reportportal/service-authorization:5.13.1 "sh -c 'java ${JAVA_…"   43 hours ago   Up 10 hours (healthy)   8080/tcp                                       reportportal-uat-1
+bd10c565e298   traefik:v2.11.15                        "/entrypoint.sh --pr…"   43 hours ago   Up 10 hours          80/tcp, 0.0.0.0:8080->8080-8081/tcp              reportportal-gateway-1
+ce373a46169c   reportportal/service-ui:5.12.4          "/docker-entrypoint.…"   43 hours ago   Up 10 hours (healthy)   8080/tcp                                       reportportal-ui-1
+4f46e9e272d    opensearchproject/opensearch:2.18.0     "./opensearch-docker…"   43 hours ago   Up 10 hours (healthy)   9200/tcp, 9300/tcp, 9600/tcp, 9650/tcp         reportportal-opensearch-1
+2712a6d6a6f6   bitnami/postgresql:16.6.0               "/opt/bitnami/script…"   43 hours ago   Up 10 hours (healthy)   5432/tcp                                       postgres
+f6c5f04fd64b   bitnami/rabbitmq:3.13.7-debian-12-r5   "/opt/bitnami/script…"   43 hours ago   Up 10 hours (healthy)   4369/tcp, 5551-5552/tcp, 5671-5672/tcp, 15671-15672/tcp, 25672/tcp   reportportal-rabbitmq-1
+```
+
+Each container serves a specific purpose in the ReportPortal ecosystem. You can check the status of these containers at any time using:
+
+```
+docker ps | grep reportportal
+``` 
